@@ -8,6 +8,8 @@ COPY [ "Pipfile", "Pipfile.lock", "./" ]
 
 RUN pipenv install --system --deploy
 
-COPY [ "utils.py", "predict.py", "model.bin", "DictVectorizer.bin", "./"]
+COPY [ "predict.py", "model.bin", "DictVectorizer.bin", "./"]
+
+COPY utils /app/utils
 
 CMD [ "uvicorn", "predict:app", "--host", "0.0.0.0", "--port", "8000" ]

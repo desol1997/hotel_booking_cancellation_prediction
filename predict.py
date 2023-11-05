@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-from utils import read_model_asset, create_feature_matrix, predict
+from utils.utils import read_model_asset, create_feature_matrix, predict
 
 MODEL_FILENAME = 'model.bin'
 DV_FILENAME = 'DictVectorizer.bin'

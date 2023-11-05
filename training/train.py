@@ -1,4 +1,9 @@
+
+import sys
 from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+
 from typing import List, Dict, Any, Tuple, Mapping
 from collections.abc import Iterable
 from collections import defaultdict, namedtuple
@@ -10,9 +15,9 @@ import pandas as pd
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.model_selection import KFold
 
-from logger import logger
+from utils.logger import logger
 
-from utils import (
+from utils.utils import (
     standardize_dataset,
     fill_missing_with_values,
     extract_features_and_target,

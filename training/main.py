@@ -1,7 +1,10 @@
+import sys
 from pathlib import Path
 
-from logger import logger
-from utils import convert_target_to_binary
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+
+from utils.logger import logger
+from utils.utils import convert_target_to_binary
 
 from train import (
     extract_data,
@@ -11,7 +14,7 @@ from train import (
     save_model_metrics
 )
 
-DATA_DIR = Path(__file__).parent / 'data'
+DATA_DIR = Path(__file__).parent.parent / 'data'
 FILE_PATH = DATA_DIR / 'hotel_reservations.csv'
 DROP_COLUMNS = ['Booking_ID', 'arrival_year']
 SEED = 1

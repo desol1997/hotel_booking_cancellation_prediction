@@ -11,6 +11,8 @@ seaborn = "*"
 xgboost = "*"
 jupyter = "*"
 tqdm = "*"
+fastapi = "*"
+uvicorn = {extras = ["standard"], version = "*"}
 
 [dev-packages]
 

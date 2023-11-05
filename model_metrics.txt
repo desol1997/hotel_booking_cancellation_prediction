@@ -1,0 +1,5 @@
+AUC of the model: 0.9567398738258437.
+Accuracy of the model: 0.9001516195727085.
+Precision of the model: 0.8693160832645306.
+Recall of the model: 0.8181225800662594.
+F1 of the model: 0.8429298821344882.

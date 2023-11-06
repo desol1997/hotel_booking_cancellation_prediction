@@ -169,4 +169,4 @@ The machine learning model has been deployed as a web service using FastAPI and 
 4. **Access the Application:**
    - Update the `url` variable in the `test.py` script located in the `testing` folder with the provided URL or endpoint. After making this change, execute the `test.py` script. This will enable you to view the response in JSON format, displaying the predicted likelihood of a hotel booking being canceled.
 
-The outcomes of the deployment are visible in the images stored in the 'deployment' directory.
+The outcomes of the deployment are visible in the images stored in the `deployment` directory.

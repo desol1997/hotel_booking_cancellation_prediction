@@ -5,33 +5,16 @@ This project aims to build a machine learning model to predict the probability o
 ## Table of Contents
 
 - [About](#about)
+- [Use Cases](#use-cases)
 - [Data](#data)
 - [Machine Learning Model](#machine-learning-model)
+- [Dependencies](#dependencies)
+- [Installation](#installation)
 - [Deployment](#deployment)
-- [Usage](#usage)
-- [Use Cases](#use-cases)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## About
 
 Hotel bookings often involve cancellations, affecting the hospitality business's planning and revenue. This project focuses on using machine learning to predict the likelihood of a booking being canceled. The trained model can be accessed via a web server, making it useful for hotel businesses to assess potential cancellations in advance.
-
-## Data
-
-The dataset used for training the machine learning model can be found on Kaggle: [Hotel Reservations Classification Dataset](https://www.kaggle.com/datasets/ahsan81/hotel-reservations-classification-dataset).
-
-## Machine Learning Model
-
-We have developed a machine learning model that predicts the probability of a hotel booking being canceled. The model was trained using Python and popular machine learning libraries. Detailed information about the model's implementation can be found in the [model documentation](model/README.md).
-
-## Deployment
-
-The machine learning model has been deployed as a web service using FastAPI and Docker. The deployment process and requirements are documented in the [deployment guide](deployment/README.md).
-
-## Usage
-
-To use the deployed model, you can send a POST request to the API, providing the booking information as input. The API will return the predicted probability of cancellation. More information about using the API can be found in the [usage documentation](usage/README.md).
 
 ## Use Cases
 
@@ -79,10 +62,111 @@ Utilizing a web server that serves one request at a time, the machine learning m
 
 These use cases illustrate how a machine learning model for predicting hotel booking cancellations, delivered through a web server that processes one request at a time, can be a powerful tool in enhancing operational efficiency, improving customer service, and maximizing revenue for hotels. By leveraging the model's insights in real-time, hotels can make immediate, data-driven decisions to adapt to changing booking dynamics in a dynamic and competitive industry.
 
-## Contributing
+## Data
 
-We welcome contributions to this project. If you have ideas for improvements or would like to add features, please refer to our [contribution guidelines](CONTRIBUTING.md).
+The dataset used for training the machine learning model can be found on Kaggle: [Hotel Reservations Classification Dataset](https://www.kaggle.com/datasets/ahsan81/hotel-reservations-classification-dataset).
 
-## License
+## Machine Learning Model
 
-This project is licensed under the [MIT License](LICENSE).
+After reviewing various models, we settled on a gradient boosting model, developed using XGBoost and other well-known machine learning libraries. This model is used to predict the likelihood of a hotel booking getting canceled.
+
+## Dependencies
+
+This project uses `pipenv` for managing the Python environment and dependencies. Ensure you have the following installed:
+
+- Python (version 3.11)
+- `pipenv` (Python package for managing virtual environments)
+
+## Installation
+
+### Step 1: Python and Git
+
+If not already installed, download and install Python from [Python's official website](https://www.python.org/).
+Additionally, you'll need Git to clone the repository. Install Git from [Git's official website](https://git-scm.com/) if not already present.
+
+### Step 2: Clone the Repository
+
+Clone this repository to your local machine:
+
+```bash
+git clone https://github.com/desol1997/hotel_booking_cancellation_prediction.git
+cd hotel_booking_cancellation_prediction
+```
+
+### Step 3: Set Up the Environment
+
+Ensure `pipenv` is installed. If not, install it via pip:
+
+```bash
+pip install pipenv
+```
+
+Then, create the virtual environment and install dependencies using `pipenv`:
+
+```bash
+pipenv install
+```
+
+### Step 4: Activate the Environment
+
+Activate the virtual environment to work within it:
+
+```bash
+pipenv shell
+```
+
+### Step 5: Running the Project
+
+Once the environment is activated, follow specific instructions provided in the project's documentation or source code to run the project.
+
+## Deployment
+
+The machine learning model has been deployed as a web service using FastAPI and Docker. You can test the service either locally with Docker or using `awsebcli` to deploy to AWS Elastic Beanstalk.
+
+### Local Deployment with Docker
+
+1. **Build the Docker Image:**
+   - Use the following command to build the Docker image:
+   ```bash
+   docker build -t myapp .
+   ```
+   - Replace `myapp` with the name you want to assign to the Docker image.
+
+2. **Run the Docker Container:**
+   - Start a container locally using the following command:
+   ```bash
+   docker run -p 8080:8000 myapp
+   ```
+   - Ensure to replace 8080 with the appropriate port and myapp with your Docker image's name.
+
+3. **Access the Application:**
+   - Update the `url` variable in the `test.py` script located in the `testing` folder with `http://localhost:8080/predict/`. After making this change, execute the `test.py` script. This will enable you to view the response in JSON format, displaying the predicted likelihood of a hotel booking being canceled.
+
+### Deployment to AWS Elastic Beanstalk using `awsebcli`
+
+1. **AWS Account and Access Keys:**
+   - Before deploying to Elastic Beanstalk using `awsebcli`, ensure you have an active AWS account.
+   - You'll need the Access Key ID and Secret Access Key associated with your AWS account to configure `awsebcli`. These Access Keys are used for authentication to AWS services.
+
+2. **Install and Configure `awsebcli`:**
+   - Install `awsebcli` by running:
+   ```bash
+   pipenv install awsebcli
+   ```
+   - Configure `awsebcli` by running:
+   ```bash
+   eb init
+   ```
+   - Follow the prompts to set up your AWS credentials and select your Elastic Beanstalk application.
+
+3. **Deploy to Elastic Beanstalk:**
+   - Deploy Dockerized application to Elastic Beanstalk by executing the following command:
+   ```bash
+   eb create myapp-env
+   ```
+   - Replace myapp-env with your desired environment name.
+
+4. **Access the Application:**
+   - Update the `url` variable in the `test.py` script located in the `testing` folder with the provided URL or endpoint. After making this change, execute the `test.py` script. This will enable you to view the response in JSON format, displaying the predicted likelihood of a hotel booking being canceled.
+
+The outcomes of the deployment are visible in the images stored in the 'deployment' directory.

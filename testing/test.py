@@ -2,7 +2,7 @@ import requests
 
 
 if __name__ == '__main__':
-    url = "http://localhost:8888/predict/"
+    url = "http://prediction-serve-env.eba-dfxcrvwd.us-east-1.elasticbeanstalk.com/predict/"
     booking = {
         'no_of_adults': 2,
         'no_of_children': 0,
